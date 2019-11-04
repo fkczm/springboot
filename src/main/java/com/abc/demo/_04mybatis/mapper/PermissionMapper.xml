@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.abc.demo._04mybatis.mapper.PermissionMapper" >
+  <!--<cache size="1024" />-->
+  <!--开启二级缓存需序列化-->
+  <resultMap id="baseMap" type="Permission">
+    <id column="id" property="id"/>
+    <result property="name" column="name"/>
+    <result property="resource" column="resource"/>
+    <result property="hiretime" column="hiretime"/>
+  </resultMap>
+  <insert id="insert" useGeneratedKeys="true" parameterType="Permission" keyColumn="id" keyProperty="id" >
+    insert into permission  (id,resource,name,hiretime) values  (#{id},#{resource},#{name},#{hiretime})
+  </insert>
+  <select id="selectAll" resultType="com.abc.demo._04mybatis.domain.Permission" >
+    select * from permission limit 1,4
+  </select>
+  <update id="update" parameterType="Permission" >
+      update permission SET  name=#{name},resource=#{resource},hiretime=#{hiretime} where id=#{id}
+  </update>
+  <select id="get" parameterType="long" resultType="Permission">
+    select * from permission WHERE  id=#{id}
+  </select>
+  <select id="queryForObject" resultMap="baseMap" parameterType="com.abc.demo._04mybatis.queryObject.QueryForObject" >
+      select * from permission
+      <where>
+        <if test="name != null and name !=''">
+          and name LIKE concat('%',#{name},'%')
+        </if>
+      </where>
+    limit #{beginIndex},#{pageSize}
+  </select>
+  <select id="checkLogin" resultType="Permission" >
+    select * from permission WHERE  name=#{name} and resource=#{resource}
+  </select>
+<!--   collection="ids"  -->
+
+  <select id="getPermissions" parameterType="list" resultType="Permission">
+    select * from permission
+    <where>
+      <if test="ids != null">
+          id IN
+        <foreach collection="ids" close=")" open="(" item="item" separator=",">
+          #{item}
+        </foreach>
+      </if>
+    </where>
+  </select>
+
+<!-- 集合 数组   -->
+  <!--
+    <select id="getPermissions" parameterType="list" resultType="Permission">
+    select * from permission
+    <where>
+      <if test="list != null">
+          id IN
+        <foreach collection="list" close=")" open="(" item="item" separator=",">
+          #{item}
+        </foreach>
+      </if>
+    </where>
+  </select>
+
+
+  -->
+</mapper>
