@@ -1,5 +1,6 @@
 package com.abc.demo._0swagger;
 
+import com.abc.demo._0swagger.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -16,12 +17,12 @@ import java.util.Map;
 /**
  * Created by lihj on 2019/10/27.
  */
-@Api(value = "用户Controller")
+@Api(tags = "类的中文说明:用户Controller", description="类名称:UserController")
 @Controller
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
     @ApiIgnore
-    @GetMapping("hello")
+    @GetMapping("/hello")
     public @ResponseBody String hello() {
         return "hello";
     }
@@ -29,10 +30,11 @@ public class UserController {
     @ApiOperation(value = "获取用户信息", notes = "根据用户id获取用户信息")
     @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "Long", paramType = "path")
     @GetMapping("/{id}")
-    public @ResponseBody User getUserById(@PathVariable(value = "id") Long id) {
+    public @ResponseBody
+    User getUserById(@PathVariable(value = "id") Long id) {
         User user = new User();
         user.setId(id);
-        user.setName("mrbird");
+        user.setName("亨");
         user.setAge(25);
         return user;
     }
@@ -44,12 +46,12 @@ public class UserController {
         List<User> list = new ArrayList<>();
         User user1 = new User();
         user1.setId(1l);
-        user1.setName("mrbird");
+        user1.setName("杰");
         user1.setAge(25);
         list.add(user1);
         User user2 = new User();
         user2.setId(2l);
-        user2.setName("scott");
+        user2.setName("威");
         user2.setAge(29);
         list.add(user2);
         return list;
