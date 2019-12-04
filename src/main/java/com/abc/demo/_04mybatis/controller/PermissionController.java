@@ -36,7 +36,7 @@ public class PermissionController {
         permission.setName(name);
         permission.setResource(resource);
         permission.setHiretime(new Date());
-        int primaryKey = permissionService.insert(permission);
+        int primaryKey = permissionService.insertCache(permission);
         return "success:add:primaryKey="+primaryKey;
     }
     @RequestMapping("/update")

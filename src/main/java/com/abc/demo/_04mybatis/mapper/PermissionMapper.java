@@ -8,6 +8,7 @@ import java.util.List;
 public interface  PermissionMapper {
     List<Permission> selectAll();
     int insert(Permission permission);
+
     void update(Permission permission);
     Permission get(Long id );
     List<Permission> queryForObject(QueryForObject queryForObject);

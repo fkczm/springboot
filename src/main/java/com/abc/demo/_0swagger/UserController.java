@@ -67,8 +67,9 @@ public class UserController {
         return map;
     }
 
-    @ApiOperation(value = "删除用户", notes = "根据用户id删除用户")
-    @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "Long", paramType = "path")
+
+//    @ApiOperation(value = "删除用户", notes = "根据用户id删除用户")
+//    @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "Long", paramType = "path")
     @DeleteMapping("/{id}")
     public @ResponseBody Map<String, Object> deleteUser(@PathVariable(value = "id") Long id) {
         Map<String, Object> map = new HashMap<>();
@@ -87,3 +88,4 @@ public class UserController {
         return map;
     }
 }
+

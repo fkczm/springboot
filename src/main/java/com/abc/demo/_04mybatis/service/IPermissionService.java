@@ -17,5 +17,5 @@ public interface IPermissionService {
     List<Permission> queryForObject(QueryForObject queryForObject);
     Permission checkLogin(  String name ,   String resource);
     List<Permission> getPermissions(List<Integer> ids);
-
+    int insertCache(Permission permission);
 }

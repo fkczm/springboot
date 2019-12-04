@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "UserModel 对象")
 public class User {
+
     public String getName() {
         return name;
     }
@@ -33,8 +34,8 @@ public class User {
     }
 
     private String name;
-    @ApiModelProperty(value="参数中文名称:age",required=true,example = "10")
+//    @ApiModelProperty(value="参数中文名称:age",required=true,example = "10")
     private int age;
-    @ApiModelProperty(value="参数中文名称:id",required=true,example = "0")
+//    @ApiModelProperty(value="参数中文名称:id",required=true,example = "0")
     private Long id;
 }

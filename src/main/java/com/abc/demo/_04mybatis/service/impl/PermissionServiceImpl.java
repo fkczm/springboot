@@ -5,6 +5,8 @@ import com.abc.demo._04mybatis.mapper.PermissionMapper;
 import com.abc.demo._04mybatis.queryObject.QueryForObject;
 import com.abc.demo._04mybatis.service.IPermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
@@ -35,6 +37,11 @@ public class PermissionServiceImpl implements IPermissionService {
     public int insert(Permission permission) {
         return permissionMapper.insert(permission);
     }
+    @CachePut(value = "perm:key:",key = "#permission.id")
+    @Override
+    public int insertCache(Permission permission) {
+        return permissionMapper.insert(permission);
+    }
 
     @Override
     public void update(Permission permission) {
@@ -42,6 +49,7 @@ public class PermissionServiceImpl implements IPermissionService {
     }
 
     @Override
+
     public Permission get(Long id) {
         RedisSerializer redisSerializer=new StringRedisSerializer();
         redisTemplate.setKeySerializer(redisSerializer);
