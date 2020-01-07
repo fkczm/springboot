@@ -24,7 +24,7 @@ class SpringbootApplicationTests {
 		System.out.println(permissionService.selectAll());
 	}
 
-	@Autowired
+//	@Autowired
 	private UserMapper userMapper;
 
 	@Test
@@ -34,4 +34,6 @@ class SpringbootApplicationTests {
 		Assert.assertEquals(5, userList.size());
 		userList.forEach(System.out::println);
 	}
+
+
 }

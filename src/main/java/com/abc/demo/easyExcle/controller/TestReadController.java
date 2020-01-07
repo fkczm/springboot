@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -21,7 +22,7 @@ public class TestReadController {
     private ExcelUtil excelUtil;
     private  final Logger Logger = LoggerFactory.getLogger(TestReadController.class);
     @RequestMapping(value = "read")
-    public Map<String, Object> simpleRead()  {
+    public Map<String, Object> simpleRead(MultipartFile file)  {
 //    public List<DemoData> simpleRead(@RequestParam(value = "filePath") String filePath) throws Exception {
         String filePath="F:/code-2019/code-201911/cloneCode/easyExcel/file/DemoData.xlsx";
 //        String filePath="DemoData.xlsx";

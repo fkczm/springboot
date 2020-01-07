@@ -1,20 +1,36 @@
-package com.abc.demo.test;
+package com.abc.demo.url2zipDownload;
 
-import com.abc.demo.url2zipDownload.ZipUtils;
-import org.junit.Test;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.zip.ZipOutputStream;
 
 /**
- * Created by lihj on 2019/10/26.
+ * Created on 2019/12/31 in springboot 项目 .
  */
+@Controller
+public class ZipController {
 
-public class MyTest {
+    @RequestMapping("/zip")
+    public  void  downZip(HttpServletResponse response ) throws IOException {
+        String sessionId = UUID.randomUUID().toString();
+        String strNow = "model";
+        String tempDir = "F:/";
+        List<String> downloadFileNames = new ArrayList<>();
+        downloadFileNames.add("F:/downloadFileNames");
+        String zipFileName = String.format("%s-%s.zip", sessionId, strNow);
+        downLoadZipFile(response, zipFileName, tempDir, downloadFileNames);
+         PrintWriter writer = response.getWriter();
+         writer.write(1024);
+
+    }
     /**
      * 下载 zip 文件
      * @param response
@@ -38,5 +54,4 @@ public class MyTest {
             out.close();
         }
     }
-
 }
